@@ -1,11 +1,14 @@
 #buttom up version
+def HeapBottomUp(A,listsize):
+    for i in range( listsize/ 2, -1, -1):
+        MaxHeapify(A, i, listsize)
+
 def heapsort(random_list):
     list_size = len(random_list) - 1
-    for i in range((list_size / 2), -1, -1):
-        MaxHeapify(random_list, i, list_size)
+    HeapBottomUp(random_list,list_size)
 
     for i in range(list_size , 0, -1):
-        if random_list[0] > random_list[i]:
+        # if random_list[0] > random_list[i]:
             random_list[0], random_list[i] = random_list[i] , random_list[0]
             MaxHeapify(random_list, 0, i - 1)
     return random_list
@@ -16,21 +19,22 @@ def Left(i):
 def Right(i):
     return i * 2 + 2
 
-def MaxHeapify(aList, root, bottom):
-    left = Left(root)
-    right = Right(root)
+def MaxHeapify(A, i, bottom):
+    left = Left(i)
+    right = Right(i)
 
-    if left <= bottom and aList[left] > aList[root]:
-        max_child = left
+    if left <= bottom and A[left] > A[i]:
+        largest = left
     else:
-        max_child = root
+        largest = i
 
-    if right <= bottom and aList[right] > aList[max_child]:
-        max_child = right
+    if right <= bottom and A[right] > A[largest]:
+        largest = right
 
-    if max_child != root:
-        aList[root], aList[max_child] = aList[max_child], aList[root]
-        MaxHeapify(aList, max_child, bottom)
+    if largest != i:
+        A[i], A[largest] = A[largest], A[i]
+        MaxHeapify(A, largest, bottom)
 
-random_list = [3,99,0,11,23,9,75,52]
-print heapsort(random_list)
+random_list = [3,100,99,0,11,63,12,23,9,75,52]
+print "original array: ",random_list
+print "sorted array: ",heapsort(random_list)
