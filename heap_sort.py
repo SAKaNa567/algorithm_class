@@ -1,4 +1,4 @@
-#Bottom up version
+#buttom up version
 def heapsort(random_list):
     list_size = len(random_list) - 1
     for i in range((list_size / 2), -1, -1):
@@ -6,9 +6,7 @@ def heapsort(random_list):
 
     for i in range(list_size , 0, -1):
         if random_list[0] > random_list[i]:
-            temp = random_list[0]
-            random_list[0] = random_list[i]
-            random_list[i] = temp
+            random_list[0], random_list[i] = random_list[i] , random_list[0]
             MaxHeapify(random_list, 0, i - 1)
     return random_list
 
