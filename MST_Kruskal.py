@@ -1,9 +1,9 @@
 parent = dict()
-# rank = dict()
+#rank = dict()
 
 def make_set(vertice):
     parent[vertice] = vertice
-    rank[vertice] = 0
+#    rank[vertice] = 0
 
 def find(vertice):
     if parent[vertice] is vertice: return vertice
