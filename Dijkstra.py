@@ -1,31 +1,41 @@
 # coding: utf-8
-graph = {
-    "A":{
-        "B":    20,
-        "C":    5,
-        "E":    1,
-        },
-    "B":{
-        "E":    10,
+graph  = {
+    "0":{
+        "1":5,
+        "7":8,
+        "4":9,
     },
-    "C":{
-        "D":    13,
+    "1":{
+        "7":4,
+        "3":15,
     },
-    "D":{
+    "2":{
+        "3":3,
+        "6":11,
+    },
+    "3":{
+        "6":9,
+    },
+    "4":{
+        "7":5,
+        "5":4,
+        "6":20,
+    },
+    "5":{
+        "6":13,
+        "2":1,
+    },
+    "6":{
 
     },
-    "E":{
-        "D":    4,
+    "7":{
+        "2":7,
+        "5":6,
     },
 }
 
-d = {
-    "A":float('inf'),
-    "B":float('inf'),
-    "C":float('inf'),
-    "D":float('inf'),
-    "E":float('inf'),
-}
+d = {}
+
 def heap_push(pq,li):
     pq.append(li)
     pq.sort()
@@ -37,7 +47,8 @@ def heap_pop():
 
 pq = []
 def dijkstra(s):
-    # d=[float('inf')]*6
+    for i in range(len(graph)):
+        d[str(i)] = float('inf')
     d[s]=0
     heap_push(pq,[0,s])
     while len(pq) is not 0:
@@ -52,4 +63,4 @@ def dijkstra(s):
                 heap_push(pq,[d[v],v])#[w,"B"],[w,"C"]..etc.¥
     return d
 
-print dijkstra("A")
+print dijkstra("0")
